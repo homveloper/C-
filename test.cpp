@@ -1,9 +1,14 @@
 #include <iostream>
 using namespace std;
 
-int main(){
-	double x;
+int main()
+{
+	int a = 2;
+	a = ++a * 20;
+	cout << a << endl;
 
-	x = (1.0e10 + 5.0) - 1.0e10;
-	cout<<"x = "<<x<<endl;
+	a = 2;
+
+	a = a++ * 20;
+	cout << a << endl;
 }
