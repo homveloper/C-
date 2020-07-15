@@ -1,25 +1,11 @@
-#include "iostream"
-using namespace std;
+    #include <iostream>
+    using namespace std;
 
-int main(){
-    int x = 10, y = 3,  z = 2;
+    int main(){
+        int grade;
 
-    x += y -= 2;
+        cout<<"점수를 입력하세요 : ";
+        cin>>grade;     //정수를 입력하면 grade에 저장된다
 
-    cout<<"x = "<<x<<"  y = "<<y<<"   z = "<<z<<endl;
-    x = 10, y = 3, z = 2;
-
-    x *= y + 2;
-
-    cout<<"x = "<<x<<"  y = "<<y<<"   z = "<<z<<endl;
-    x = 10, y = 3, z = 2;
-
-    z = ++x + ++y;
-
-    cout<<"x = "<<x<<"  y = "<<y<<"   z = "<<z<<endl;
-    x = 10, y = 3, z = 2;
-
-    z = x++ + ++y;
-
-    cout<<"x = "<<x<<"  y = "<<y<<"   z = "<<z<<endl;
-}
+        return 0;
+    }
