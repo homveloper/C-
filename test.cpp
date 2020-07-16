@@ -1,11 +1,20 @@
-    #include <iostream>
-    using namespace std;
+#include <iostream>
+using namespace std;
 
-    int main(){
-        int grade;
+int main(){
 
-        cout<<"점수를 입력하세요 : ";
-        cin>>grade;     //정수를 입력하면 grade에 저장된다
+    int a = 5, b = 3, c = 7;
+    int min, max;
 
-        return 0;
+    min = a;
+    max = a;
+
+    if(a >= b){
+        min = b;
+    }else if(b >= c){
+        min = c;
     }
+    
+    cout<<min<<endl;
+    cout<<max<<endl;
+}
