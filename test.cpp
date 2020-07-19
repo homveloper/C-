@@ -1,20 +1,14 @@
+#include <cstdlib>
+#include <ctime>
 #include <iostream>
+
 using namespace std;
 
 int main(){
+    srand(time(NULL));
 
-    int a = 5, b = 3, c = 7;
-    int min, max;
+    int random = rand();    // rand()의 범위는 0 ~ 32767이다. 
+                            // rand() % n 은 0 ~ n-1 까지의 수를 반환합니다.
 
-    min = a;
-    max = a;
-
-    if(a >= b){
-        min = b;
-    }else if(b >= c){
-        min = c;
-    }
-    
-    cout<<min<<endl;
-    cout<<max<<endl;
+    cout<<random<<endl;
 }
