@@ -9,7 +9,7 @@ int main()
 	
 	for(i = 0; i < STUDENTS; i++)
 	{
-		cout << "번호 " << i;
+		cout << "번호" << i<<" : ";
 		for(s = 0; s < grade[i]; s++)
 			cout << "*";
 		cout << endl;

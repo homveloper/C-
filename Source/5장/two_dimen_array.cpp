@@ -1,29 +1,31 @@
 #include <iostream>
 using namespace std;
 
-const int CLASSES=3;
-const int STUDENTS=5;
+const int STUDENTS = 3;
+const int GRADE = 5;
 
 int main()
 {
-	int s[CLASSES][STUDENTS] = {
-		{  0,  1,  2,  3,  4 },	// Ã¹¹øÂ° ÇàÀÇ ¿ø¼ÒµéÀÇ ÃÊ±â°ª
-		{ 10, 11, 12, 13, 14 },	// µÎ¹øÂ° ÇàÀÇ ¿ø¼ÒµéÀÇ ÃÊ±â°ª
-		{ 20, 21, 22, 23, 24 },	// ¼¼¹øÂ° ÇàÀÇ ¿ø¼ÒµéÀÇ ÃÊ±â°ª
+	int grade[STUDENT][GRADE] = {
+		{  0,  1,  2,  3,  4 },	// ì²«ë²ˆì§¸ í–‰ì˜ ì›ì†Œë“¤ì˜ ì´ˆê¸°ê°’
+		{ 10, 11, 12, 13, 14 },	// ë‘ë²ˆì§¸ í–‰ì˜ ì›ì†Œë“¤ì˜ ì´ˆê¸°ê°’
+		{ 20, 21, 22, 23, 24 },	// ì„¸ë²ˆì§¸ í–‰ì˜ ì›ì†Œë“¤ì˜ ì´ˆê¸°ê°’
 	};
-	int clas, student, total, subtotal;
 	
-	total = 0;
-	for(clas = 0; clas < CLASSES; clas++)
+    int total = 0;
+
+	for(int i = 0; i < STUDENT; i++)
 	{
-		subtotal = 0;
-		for(student = 0; student < STUDENTS; student++)
-			subtotal += s[clas][student];
-		cout << "ÇĞ±Ş " << clas << "ÀÇ Æò±Õ ¼ºÀû= " << subtotal / STUDENTS << endl;
+		int subtotal = 0;
+		
+        for(int j; j < GRADE; j++)
+			subtotal += grade[i][j];
+
+		cout << "í•™ìƒ " << i << "ì˜ í‰ê·  ì„±ì = " << subtotal / GRADE << endl;
 		total += subtotal;
 	}
 	
-	cout << "ÀüÃ¼ ÇĞ»ıµéÀÇ Æò±Õ ¼ºÀû= " << total/(CLASSES * STUDENTS) << endl;
+	cout << "ì „ì²´ í•™ìƒë“¤ì˜ í‰ê·  ì„±ì = " << total/(STUDENT * GRADE) << endl;
 	
 	return 0;
 }

@@ -9,10 +9,10 @@ int main()
 	int i;
 
 	for(i = 0; i < SIZE; i++)
-		grade[i] = rand() % 100;
+		grade[i] = rand() % 101;        // 0 ~ 100
 
 	cout << "====================\n";
-	cout << "ÀÎµ¦½º      °ª\n";
+	cout << "ÀÎµ¦½º °ª\n";
 	cout << "====================\n";
 
 	for(i = 0; i < SIZE; i++)
