@@ -9,10 +9,22 @@ void add(int a[], int b[], int size);
 void main(){
     srand(time(NULL));
 
-    const int size = 3;
+    const int ROW = 3;
+    const int COL = 3;
 
-    int a[size];
-    int b[size];
+    int A[ROW][COL];
+    int B[ROW][COL];
+
+    for(int i=0; i<ROW; i++){
+        for(int j=0; j<COL; j++){
+            A[i][j] = rand() % 3;
+            B[i][j] = rand() % 3;
+        }
+    }
+
+
+
+
 
     for(int i=0; i<size; i++){
         a[i] = rand() % 5;
@@ -27,7 +39,7 @@ void main(){
     print(a,size);
 }
 
-void print(int a[], int size){
+void print(int a[][COL], int size){
     cout<<"( ";
     for(int i=0; i<size; i++){
         cout<<a[i];
@@ -35,7 +47,6 @@ void print(int a[], int size){
         if(i != size-1)
             cout<<", ";
     }
-
 
     cout<<" )"<<endl;
 }
