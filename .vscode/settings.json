@@ -4,6 +4,8 @@
         "iostream": "cpp",
         "xlocale": "cpp",
         "cmath": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "typeinfo": "cpp",
+        "xstring": "cpp"
     }
 }
