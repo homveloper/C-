@@ -3,6 +3,7 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "xlocale": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "algorithm": "cpp"
     }
 }

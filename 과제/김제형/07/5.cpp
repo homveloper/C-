@@ -1,6 +1,7 @@
 #include <iostream>
-using namespace std;
 #include <cstdlib>
+#include <algorithm>
+using namespace std;
 
 void sort(int A[], int size){
 	// create array //
@@ -28,6 +29,6 @@ void sort(int A[], int size){
 }
 
 int main(){
-	int A[1];
+	int A[5];
 	sort(A,5);
 }

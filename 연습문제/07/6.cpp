@@ -20,6 +20,7 @@ void main(){
         A[i] = rand()%10;
         B[i] = rand()%10;
     }
+
     sort(A,SIZE);
     sort(B,SIZE);
 
@@ -38,7 +39,7 @@ void merge(int *A, int *B, int *C, int SIZE){
     int k =0;   //배열 C의 인덱스를 표시
 
     for(k=0; k<SIZE * 2 && i < SIZE && j < SIZE; k++){
-        C[k] = A[i] < B[j] ? A[i++] : B[j++]; 
+        C[k] = A[i] < B[j] ? A[i++] : B[j++];
     }
 
     // 만약 두 배열 A,B 중 하나의 값이 전부 C에 들어간다면
@@ -59,7 +60,6 @@ void print(int *A, int size){
         cout<<*(A+i)<<" ";
     cout<<endl;
 }
-
 
 // selection sort(선택 정렬)
 void sort(int A[], int size){
