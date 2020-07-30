@@ -6,6 +6,8 @@
         "cmath": "cpp",
         "algorithm": "cpp",
         "typeinfo": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "istream": "cpp",
+        "string": "cpp"
     }
 }
