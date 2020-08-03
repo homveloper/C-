@@ -41,18 +41,12 @@ bool Product::isCheaper(Product other)
 
 int main() 
 {
-	Product p1, p2;
+	string s1 = "dd";
 
-	p1.input();
-	p2.input();
-	if( p1.isCheaper(p2) ){
-		p1.print();
-		cout << "이 더 쌉니다\n";
-	}
-	else {
-		p2.print();
-		cout << "이 더 쌉니다\n";
-	}
+	cout<<&s1<<endl;
+	cout<<s1<<endl;
+
+	s1.clear();
 
 	return 0;
 }
