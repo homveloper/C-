@@ -1,0 +1,102 @@
+//// ???????? 1.?????? ??????? Rectangle ??????? ???????.
+////?????? ???��? ???��? ??????? width?? height?? ??? ?????? ??????. ???? ?????? ????? ?????? ??? calArea()?? ??? ????? ??????.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Rectangle {
+private:
+	int width;
+	int height;
+	int x1, x2;
+	int y1, y2;
+	int area;
+
+public:
+	void enter();
+	void calArea();
+	void ShowPosition1();
+	void ShowPosition2();
+	void ShowPosition3();
+	void ShowPosition4();
+	void Width();
+	void Height();
+};
+
+void Rectangle::enter(){
+	cout << "???? ?? x, y????? ????????" << endl;
+	cin >> x1 >> y1;
+	cout << "x1 ??? : " << x1 << ", y1 ??? : " << y1 << endl;
+	cout << endl;
+	cout << "?????? ??? x, y????? ????????" << endl;
+	cin >> x2 >> y2;
+	cout << "x2 ??? : " << x2 << ", y2 ??? : " << y2 << endl;
+}
+void Rectangle::calArea() {
+	area = abs(x2 - x1) * abs(y2 - y1);
+	cout << "?????? ????? " << area << "????." << endl;
+}
+void Rectangle::Width() {
+	width = abs(x2 - x1);
+	cout << "???? ????? " << width << "????." << endl;
+}
+void Rectangle::Height() {
+	height = abs(y2 - y1);
+	cout << "???? ????? " << height << "????." << endl;
+}
+
+void Rectangle::ShowPosition1() {
+	if (y2 >= y1){
+		for (int j = 0; j < y1; j++)
+		cout << '\n';
+	}
+	else {
+		for (int j = 0; j < y2; j++)
+			cout << '\n';
+	} cout << "*";
+}
+
+void Rectangle::ShowPosition2() {
+	for (int j = 0; j < y2; j++) {
+		cout << '\n';
+		for (int i = 0; i < x2; i++) {
+			cout << " ";
+		}
+	}
+	cout << "*" << endl;
+}
+
+void Rectangle::ShowPosition3() {
+	for (int j = 0; j < y1; j++) {
+		cout << '\n';
+		for (int i = 0; i < x2; i++) {
+			cout << " ";
+		}
+	}
+	cout << "*" << endl;
+}
+
+void Rectangle::ShowPosition4() {
+	for (int j = 0; j < y2; j++) {
+		cout << '\n';
+		for (int i = 0; i < x1; i++) {
+			cout << " ";
+		}
+	}
+	cout << "*" << endl;
+}
+
+int main() {
+	Rectangle rec;
+
+	rec.enter();
+	rec.ShowPosition1();
+	rec.ShowPosition2();
+	rec.ShowPosition3();
+	rec.ShowPosition4();
+	rec.Width();
+	rec.Height();
+	rec.calArea();
+}
+

@@ -1,52 +1,128 @@
+// 행렬 클래스
+/*
+    void print()
+
+    void add(const Matrix m)
+    
+    void difference(const Matrix m)
+    
+    void multiply(const Matrix m)
+
+    Maxtrix(int n)  // n x n 행렬이 생성되며 그 값은 랜덤
+
+    Matrix(Matrix &m);
+*/
+
 #include <iostream>
-#include <string>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
-class Product {
-private:
-	int id;
-	string name;
-	int price;
-
+class Matrix{
+    int **matrix;
+    int size;
 public:
-	void input();
-	void print();
-	bool isCheaper(Product other);
+    Matrix(int n = 2){
+
+        // 2차원 동적 배열 생성
+        matrix = new int*[n];           // 행렬의 행
+        size = n;
+
+        for(int i=0; i<size; i++){
+            matrix[i] = new int[n];     // 행렬의 열
+        }
+
+        // 2차원 동적 배열 초기화
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
+                matrix[i][j] = rand()%10;
+            }
+        }
+    }
+
+    Matrix(Matrix &m){
+        size = m.size;
+        matrix = new int*[size];
+
+        for(int i=0; i<size; i++){
+            matrix[i] = new int[size];
+
+            for(int j=0; j<size; j++){
+                matrix[i][j] = m.matrix[i][j];
+            }
+        }
+    }
+
+    ~Matrix(){
+        for(int i=0; i<size; i++)
+            delete matrix[i];
+             
+        delete[] matrix;
+    }
+
+    void add(const Matrix m){
+        for(int i=0; i<size; i++)
+            for(int j=0; j<size; j++)
+                matrix[i][j] += m.matrix[i][j];
+    }
+
+    
+    void difference(const Matrix m){
+        for(int i=0; i<size; i++)
+            for(int j=0; j<size; j++)
+                matrix[i][j] -= m.matrix[i][j];
+    }
+
+    void multiply(const Matrix m){
+
+        Matrix temp(*this);
+
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
+                
+                int sum = 0;
+
+                for(int k=0; k<size; k++){
+                    sum += matrix[i][k] * m.matrix[k][j];
+                }
+
+                temp.matrix[i][j] = sum;
+            }
+        }
+
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
+                matrix[i][j] = temp.matrix[i][j];
+            }
+        }
+    }
+
+    void print(){
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
+                cout<<matrix[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+
+    int** getMatrix(){
+        return matrix;
+    }
+
+    int getSize(){
+        return size;
+    }
 };
 
-void Product::input()
-{
-	cout << "상품의 일련 번호: ";
-	cin >> id;
-	cout << "상품의 이름: ";
-	cin >> name;
-	cout << "상품의 가격: ";
-	cin >> price;
-}
+void main(){
+    srand(time(NULL));
 
-void Product::print()
-{
-	cout << " 상품 번호 " << id << endl
-		<< " 상품의 이름: " << name 
-		<< " 상품의 가격: " << price << endl;
-}
+    Matrix m1(2), m2(2);
 
-bool Product::isCheaper(Product other)
-{
-	if( price < other.price) 
-		return true;
-	else 
-		return false;
-}
+    m1.print();
+    m2.print();
 
-int main() 
-{
-	string s1 = "dd";
-
-	cout<<&s1<<endl;
-	cout<<s1<<endl;
-
-	s1.clear();
-
-	return 0;
+    m1.multiply(m2);
+    m1.print();
 }
