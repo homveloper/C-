@@ -1,128 +1,77 @@
-// 행렬 클래스
-/*
-    void print()
-
-    void add(const Matrix m)
-    
-    void difference(const Matrix m)
-    
-    void multiply(const Matrix m)
-
-    Maxtrix(int n)  // n x n 행렬이 생성되며 그 값은 랜덤
-
-    Matrix(Matrix &m);
-*/
-
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <assert.h>
 using namespace std;
 
-class Matrix{
-    int **matrix;
-    int size;
+// 향상된 배열을 나타낸다. 
+class MyArray {
+	friend ostream& operator<<(ostream &, const MyArray &);	// 출력 연산자 <<
+private:
+	int *data;		// 배열의 데이터
+	int size;		// 배열의 크기
+
 public:
-    Matrix(int n = 2){
+	MyArray(int size = 10);	// 디폴트 생성자
+	~MyArray();			// 소멸자
 
-        // 2차원 동적 배열 생성
-        matrix = new int*[n];           // 행렬의 행
-        size = n;
-
-        for(int i=0; i<size; i++){
-            matrix[i] = new int[n];     // 행렬의 열
-        }
-
-        // 2차원 동적 배열 초기화
-        for(int i=0; i<size; i++){
-            for(int j=0; j<size; j++){
-                matrix[i][j] = rand()%10;
-            }
-        }
-    }
-
-    Matrix(Matrix &m){
-        size = m.size;
-        matrix = new int*[size];
-
-        for(int i=0; i<size; i++){
-            matrix[i] = new int[size];
-
-            for(int j=0; j<size; j++){
-                matrix[i][j] = m.matrix[i][j];
-            }
-        }
-    }
-
-    ~Matrix(){
-        for(int i=0; i<size; i++)
-            delete matrix[i];
-             
-        delete[] matrix;
-    }
-
-    void add(const Matrix m){
-        for(int i=0; i<size; i++)
-            for(int j=0; j<size; j++)
-                matrix[i][j] += m.matrix[i][j];
-    }
-
-    
-    void difference(const Matrix m){
-        for(int i=0; i<size; i++)
-            for(int j=0; j<size; j++)
-                matrix[i][j] -= m.matrix[i][j];
-    }
-
-    void multiply(const Matrix m){
-
-        Matrix temp(*this);
-
-        for(int i=0; i<size; i++){
-            for(int j=0; j<size; j++){
-                
-                int sum = 0;
-
-                for(int k=0; k<size; k++){
-                    sum += matrix[i][k] * m.matrix[k][j];
-                }
-
-                temp.matrix[i][j] = sum;
-            }
-        }
-
-        for(int i=0; i<size; i++){
-            for(int j=0; j<size; j++){
-                matrix[i][j] = temp.matrix[i][j];
-            }
-        }
-    }
-
-    void print(){
-        for(int i=0; i<size; i++){
-            for(int j=0; j<size; j++){
-                cout<<matrix[i][j]<<" ";
-            }
-            cout<<endl;
-        }
-    }
-
-    int** getMatrix(){
-        return matrix;
-    }
-
-    int getSize(){
-        return size;
-    }
+	int getSize() const;		// 배열의 크기를 반환
+	MyArray& operator=(const MyArray &a);	// = 연산자 중복 정의
+	int& operator[](int i);	// [] 연산자 중복: 설정자
 };
 
-void main(){
-    srand(time(NULL));
+MyArray::MyArray(int s) {
+	size = (s > 0 ? s : 10);    // 디폴트 크기를 10으로 한다.
+	data = new int[size];      // 동적 메모리 할당
 
-    Matrix m1(2), m2(2);
-
-    m1.print();
-    m2.print();
-
-    m1.multiply(m2);
-    m1.print();
+	for (int i = 0; i < size; i++)
+		data[i] = 0;           // 요소들의 초기화 
 }
+
+MyArray::~MyArray() {
+	delete [] data;                       // 동적 메모리 반납
+	data = NULL;
+}
+
+MyArray& MyArray::operator=(const MyArray& a) {
+	if (&a != this) {			// 자기 자신인지를 체크
+		delete [] data;			// 동적 메모리 반납
+		size = a.size;			// 새로운 크기를 설정
+		data = new int[size];		// 새로운 동적 메모리 할당 
+
+		for (int i = 0; i < size; i++)
+			data[i] = a.data[i];	// 데이터 복사
+	}
+	return *this;				// a = b = c와 같은 경우를 대비
+}
+
+int MyArray::getSize() const 
+{ 
+	return size; 
+}
+
+int& MyArray::operator[](int index) {
+	assert(0 <= index && index < size);	// 인데스가 범위에 있지 않으면 중지
+	return data[index]; 
+}
+
+// 프렌드 함수 정의
+ostream& operator<<(ostream &output, const MyArray &a) {
+	int i;
+	for (i = 0; i < a.size; i++) {
+		output << a.data[i] << ' ';
+	}
+	output << endl;
+	return output;			// cout << a1 << a2 << a3와 같은 경우 대비
+}
+
+int main()
+{
+	MyArray a1(10);
+
+	a1[0] = 1;
+	a1[1] = 2;
+	a1[2] = 3;
+	a1[3] = 4;
+	cout << a1 ;
+
+	return 0;
+}	
