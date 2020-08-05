@@ -2,7 +2,6 @@
 using namespace std;
 class Vector
 {
-	friend ostream& operator<<(ostream& os, const Vector& v);
 private:
 	double x, y;
 public:
@@ -10,6 +9,8 @@ public:
 		this->x = x;
 		this->y = y;
 	}
+	ostream& operator<<(ostream& os);
+
 	Vector operator+(const Vector& v2) const
 	{
 		Vector v(0.0, 0.0);
@@ -24,9 +25,9 @@ public:
 
 };
 
-ostream& operator<<(ostream& os, const Vector& v)
+ostream& Vector::operator<<(ostream& os)
 {
-	os << "(" << v.x << "," << v.y << ")" << endl;
+	os << "(" << this->x << "," << this->y << ")" << endl;
 	return os;
 }
 

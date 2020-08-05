@@ -1,77 +1,49 @@
 #include <iostream>
-#include <assert.h>
 using namespace std;
-
-// 향상된 배열을 나타낸다. 
-class MyArray {
-	friend ostream& operator<<(ostream &, const MyArray &);	// 출력 연산자 <<
+class Vector
+{
 private:
-	int *data;		// 배열의 데이터
-	int size;		// 배열의 크기
-
+	double x, y;
 public:
-	MyArray(int size = 10);	// 디폴트 생성자
-	~MyArray();			// 소멸자
+	Vector(double x, double y){
+		this->x = x;
+		this->y = y;
+	}
 
-	int getSize() const;		// 배열의 크기를 반환
-	MyArray& operator=(const MyArray &a);	// = 연산자 중복 정의
-	int& operator[](int i);	// [] 연산자 중복: 설정자
+	Vector operator+(const Vector& v2) const;
+	friend ostream& operator<<(ostream& os, const Vector &v);
+    friend istream& operator>>(istream& is,Vector &v);
+
+	void display(){
+		cout << "(" << x << "," << y << ")" << endl;
+	}
 };
 
-MyArray::MyArray(int s) {
-	size = (s > 0 ? s : 10);    // 디폴트 크기를 10으로 한다.
-	data = new int[size];      // 동적 메모리 할당
-
-	for (int i = 0; i < size; i++)
-		data[i] = 0;           // 요소들의 초기화 
+// << 연산자의 중복 정의
+ostream& operator<<(ostream& os, const Vector &v)
+{
+	os << "(" << v.x << "," << v.y << ")" << endl;
+	return os;
 }
 
-MyArray::~MyArray() {
-	delete [] data;                       // 동적 메모리 반납
-	data = NULL;
+istream& operator>>(istream& is, Vector &v){
+    is >> v.x >> v.y;
+    return is;
 }
 
-MyArray& MyArray::operator=(const MyArray& a) {
-	if (&a != this) {			// 자기 자신인지를 체크
-		delete [] data;			// 동적 메모리 반납
-		size = a.size;			// 새로운 크기를 설정
-		data = new int[size];		// 새로운 동적 메모리 할당 
-
-		for (int i = 0; i < size; i++)
-			data[i] = a.data[i];	// 데이터 복사
-	}
-	return *this;				// a = b = c와 같은 경우를 대비
-}
-
-int MyArray::getSize() const 
-{ 
-	return size; 
-}
-
-int& MyArray::operator[](int index) {
-	assert(0 <= index && index < size);	// 인데스가 범위에 있지 않으면 중지
-	return data[index]; 
-}
-
-// 프렌드 함수 정의
-ostream& operator<<(ostream &output, const MyArray &a) {
-	int i;
-	for (i = 0; i < a.size; i++) {
-		output << a.data[i] << ' ';
-	}
-	output << endl;
-	return output;			// cout << a1 << a2 << a3와 같은 경우 대비
+Vector Vector::operator+(const Vector& v2) const
+{
+    Vector v(0.0, 0.0);
+    v.x = this->x + v2.x;
+    v.y = this->y + v2.y;
+    return v;
 }
 
 int main()
 {
-	MyArray a1(10);
-
-	a1[0] = 1;
-	a1[1] = 2;
-	a1[2] = 3;
-	a1[3] = 4;
-	cout << a1 ;
+	Vector v1(1.0, 2.0), v2(3.0, 4.0);
+	Vector v3 = v1 + v2;
+	cout << v1 << v2 << v3;
 
 	return 0;
-}	
+}
