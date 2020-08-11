@@ -1,5 +1,6 @@
 #include <iostream>
-#include <string>
+#include <ostream>
+
 using namespace std;
 
 class Date{
@@ -152,51 +153,15 @@ ostream& operator <<(ostream& os, const Date& date){
     return os<<date.year<<"년 "<<date.month<<"월 "<<date.day<<"일";
 }
 
-class Book{
-
-protected:
-    string title;
-    string author;
-    int pages;
-
-public:
-    Book(){
-        Book(title,author,pages);
-    }
-
-    Book(string title, string author, int pages){
-        this->title = title;
-        this->author = author;
-        this->pages = pages;
-    }
-};
-
-class Magazine : public Book{
-protected: 
-    Date publishDate;
-
-public:
-    Magazine() : Book("무제","-",100){
-        this->publishDate = Date(2020,8,11);
-    }
-    
-    Magazine(Book book, Date publishDate) : Book(book){
-        this->publishDate = publishDate;
-    }
-
-    void print(){
-        cout<<"========================"<<endl;
-        cout<<"제목 : "<<title<<endl;
-        cout<<"저자 : "<<author<<endl;
-        cout<<"페이지수 : "<<pages<<endl;
-        cout<<"발매일 : "<<publishDate<<endl;
-        cout<<"========================"<<endl;
-    }
-};
-
 void main(){
+    Date date(2020,1,1);
 
-    Magazine m1 = Magazine(Book("로미오와 줄리엣", "셰익스피어",231), Date(2020,8,11));
+    date++;
+    cout<<date<<endl;
 
-    m1.print();
+    date--;
+    cout<<date<<endl;
+
+    date--;
+    cout<<date<<endl;
 }

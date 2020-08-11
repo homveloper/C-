@@ -1,29 +1,38 @@
 #include <iostream>
-#include <fstream>
 using namespace std;
 
-struct Score {
-	int number;
-	char name[30];
-	int score;
+class Animal 
+{
+public: 
+	Animal() { cout <<"Animal 생성자" << endl; }
+	~Animal() { cout <<"Animal 소멸자" << endl; }
+
+	virtual void speak() =0;
+    virtual void eat() = 0;
+    virtual void move() = 0;
+};
+
+class Dog : public Animal 
+{
+public: 
+	Dog() { cout <<"Dog 생성자" << endl; }
+	~Dog() { cout <<"Dog 소멸자" << endl; }
+
+	void speak() {
+        cout <<"멍멍" << endl; 
+    }
+    void eat(){
+        cout<<"개사료"<<endl;
+    }
+    void move(){
+        cout<<"강아지 가다"<<endl;
+    }
 };
 
 int main()
 {
- 	Score grades[] = {	
-		 				{20100001, "홍길동", 100},
-						{20100002, "김유신",  90},
-						{20100003, "강감찬",  80}
-					};
+	Animal *a1 = new Dog();
+	a1->speak();
 
-	ofstream os;
-	os.open("test.dat",ofstream::binary);
-	if( os.fail() ) 
-	{
-		cout << "test.dat 파일을 열 수 없습니다." << endl;
-		exit(1);
-	}
-	os.write((char *)&grades, sizeof(grades));	
-	os.close();
 	return 0;
 }
