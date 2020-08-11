@@ -1,41 +1,38 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-class Shape {
-protected:
-	int x, y;
+class Animal 
+{
+public: 
+	Animal() { cout <<"Animal 생성자" << endl; }
+	~Animal() { cout <<"Animal 소멸자" << endl; }
 
-public:
-	void setOrigin(int x, int y){
-		this->x = x;
-		this->y = y;
-	}
-	virtual void draw() { 	
-		cout <<"Shape Draw" << endl;	
-	}
+	virtual void speak() =0;
+    virtual void eat() = 0;
+    virtual void move() = 0;
 };
 
-class Rectangle : public Shape {
-private: 
-	int width, height;
-
+class Dog : public Animal 
+{
 public: 
-	void setWidth(int w) {
-		width = w;
-	}
-	void setHeight(int h) {
-		height = h;
-	}
-	virtual void draw() {
-		cout << "Rectangle Draw" << endl;
-	}
+	Dog() { cout <<"Dog 생성자" << endl; }
+	~Dog() { cout <<"Dog 소멸자" << endl; }
+
+	void speak() {
+        cout <<"멍멍" << endl; 
+    }
+    void eat(){
+        cout<<"개사료"<<endl;
+    }
+    void move(){
+        cout<<"강아지 가다"<<endl;
+    }
 };
-class Circle : public Shape {
-private: 
-	int radius;
 
-public: 
-	void setRadius(int r) {
-		radius = r;
+int main()
+{
+	Animal *a1 = new Dog();
+	a1->speak();
+
+	return 0;
 }
