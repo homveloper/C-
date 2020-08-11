@@ -9,7 +9,7 @@ public:
 	void draw() {
 		cout <<"Shape Draw" << endl;
 	}
-	void setOrigin(int x, int y){
+	void setPosition(int x, int y){
 		this->x = x;
 		this->y = y;
 	}
@@ -47,14 +47,14 @@ public:
 int main()
 {
 	Shape *ps = new Rectangle();		// OK!
-	ps->setOrigin(10, 10);
+	ps->setPosition(10, 10);
 	ps->draw();
 	((Rectangle *)ps)->setWidth(100); 	// Rectangle의 setWidth() 호출
 	delete ps;
 
 	Circle c;
 	Shape &s = c;			 // OK!
-	s.setOrigin(10, 10);
+	s.setPosition(10, 10);
 	s.draw();
 	((Circle *)ps)->setRadius(5); 		// Circle의 setRadius() 호출
 }
