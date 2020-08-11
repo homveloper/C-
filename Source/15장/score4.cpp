@@ -9,26 +9,29 @@ int main()
 	ofstream os;
 	is.open("score.txt");	
 	if( is.fail() ){
-		cerr << "ÆÄÀÏ ¿ÀÇÂ ½ÇÆÐ" << endl;
+		cerr << "íŒŒì¼ ì˜¤í”ˆ ì‹¤íŒ¨" << endl;
 		exit(1);
 	} 
+
 	os.open("result.txt");	
 	if( os.fail() ){
-		cerr << "ÆÄÀÏ ¿ÀÇÂ ½ÇÆÐ" << endl;
+		cerr << "íŒŒì¼ ì˜¤í”ˆ ì‹¤íŒ¨" << endl;
 		exit(1);
 	} 
+
 	char c;
 	int line_number=1;
-	is.get(c);
-	os << line_number << ": ";
 	while(! is.eof() )
 	{
+		is.get(c);
+
 		os << c;
+
 		if( c == '\n' ){
 			line_number++;
 			os << line_number << ": ";
 		}
-		is.get(c);
+
 	}
 	is.close();
 	os.close();
