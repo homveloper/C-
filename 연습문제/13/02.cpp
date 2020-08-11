@@ -1,92 +1,104 @@
 #include <iostream>
-#include <ostream>
-
+#include <string>
 using namespace std;
 
-class Fraction{
-private:
-    int numer;
-    int denom;
+class Student{
+protected:
+    string name;
+    string studentID;
+    string major;
+    int year;
+    int currentCredit; 
 public:
+    Student(){
 
-    Fraction(){
-        Fraction(0,0);
     }
 
-    Fraction(int numer ,int denom){
-        setNumer(numer);
-        setDenom(denom);
+    Student(string name, string studentID, string major, int year, int currentCredit){
+        this->name = name;
+        this->studentID = studentID;
+        this->major = major;
+        this->year = year;
+        this->currentCredit = currentCredit;
     }
 
-    int getNumer(){
-        return numer;
-    }
-
-    int getDenom(){
-        return denom;
-    }
-
-    void setNumer(int numer){
-        this->numer = numer;
-    }
-
-    void setDenom(int denom){
-        if(denom != 0)
-            this->denom = denom;
-        else
-            cout<<"[error] denom can't set 0"<<endl;
-    }
-
-    // 최대 공약수
-    int gcd(int a, int b)
-    {
-        int c;
-        while (b != 0)
-        {
-            c = a % b;
-            a = b;
-            b = c;
-        }
-        return a;
-    }
-
-    // 최소 공배수
-    int lcm(int a,int b)
-    {
-        return a * b / gcd(a, b);
-    }
-
-    void setFraction(int numer, int denom){
-        this->numer = numer;
-        this->denom = denom;
-    }
-
-    friend ostream& operator <<(ostream& os, const Fraction& f);
-
-
-    Fraction operator +(const Fraction& f){
-        if(denom != 0 && f.denom != 0){
-            if(f.denom == denom)
-                return Fraction(numer + f.numer,denom);
-            else{
-                int lcmNum =  lcm(denom,f.denom);
-                return Fraction(numer * lcmNum / denom + f.numer * lcmNum / f.denom, lcm(denom,f.denom));
-            }
-        }
-
-        return Fraction();
+    void print(){
+        cout<<"================"<<endl;
+        cout<<"이름 : "<<name<<endl;
+        cout<<"학번 : "<<studentID<<endl;
+        cout<<"전공 : "<<major<<endl;
+        cout<<"학년 : "<<year<<endl;
+        cout<<"이수학점 : "<<currentCredit<<endl;
     }
 };
 
-ostream& operator <<(ostream& os, const Fraction& f){
-    return os<<f.numer<<"/"<<f.denom;
-}
+class UnderGraduate : public Student{
+    string club;
+
+public:
+
+    UnderGraduate(){
+
+    }
+
+    UnderGraduate(Student student, string club) : Student(student){
+        this-> club = club;
+    }
+
+    void print(){
+        Student::print();
+        cout<<"동아리 : "<<club<<endl;
+        cout<<"================"<<endl;
+    }
+};
+
+enum Assistant {teachingAssistant, researchAssistant};
+
+class Graduate : public Student{
+    Assistant assistant;
+    double scholarshipRate;
+
+public:
+
+    Graduate(){
+
+    }
+
+    Graduate(Student student, Assistant assistant, double schoarshipRate): Student(student){
+        this->assistant = assistant;
+        this->scholarshipRate = schoarshipRate;
+    }
+
+    void print(){
+        Student::print();
+        
+        string type;
+        switch (assistant)
+        {
+        case teachingAssistant:
+            type = "교육";
+            break;
+        case researchAssistant:
+            type="연구";
+            break;
+        default:
+            type="-";
+            break;
+        }
+
+        cout<<"조교 : "<<type<<endl;
+        cout<<"장학 비율 : "<<scholarshipRate<<endl;
+        cout<<"================"<<endl;
+    }
+};
 
 void main(){
-    Fraction a(3,3);
-    Fraction b(2,5);
+    Student student("바둑이","20050020","컴퓨터소프트웨어전공",4,132);
+    UnderGraduate underGraduate(Student("철수","20191023","기계설계전공",2,41),"해동검도");
+    Graduate graduate(Student("영희","20180133","정보통신전공",2,68),Assistant::researchAssistant,0.6);
 
-    Fraction c = a + b;
+    student.print();
+    underGraduate.print();
+    graduate.print();
 
-    cout<<c<<endl;
 }
