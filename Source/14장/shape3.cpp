@@ -46,7 +46,7 @@ public:
 	}
 };
 
-class Triangle: public Shape {
+class Ellipse: public Shape {
 private: 
 	int base, height;
 
@@ -62,7 +62,7 @@ int main()
 	Shape *arrayOfShapes[3];
 
 	arrayOfShapes[0] = new Rectangle();
-	arrayOfShapes[1] = new Triangle();
+	arrayOfShapes[1] = new Ellipse();
 	arrayOfShapes[2] = new Circle();
 	for (int i = 0; i < 3; i++) {
 		arrayOfShapes[i]->draw();
