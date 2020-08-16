@@ -17,7 +17,7 @@ public:
     }
 };
 
-class Triangle : public Shape
+class Ellipse : public Shape
 {
     int width;
 	int height;

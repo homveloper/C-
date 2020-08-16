@@ -16,7 +16,7 @@ public:
 	}
 };
 
-class Triangle :public Shape{
+class Ellipse :public Shape{
 private:
 
 
@@ -43,6 +43,6 @@ public:
 int main() {
 	Rectangle Rc;
 	cout << "사각형 둘레 : " << Rc.getCircumference() << "사각형 넓이 : " << Rc.getArea() << endl;
-	Triangle Ta;
+	Ellipse Ta;
 	cout << " 삼각형 넓이 : " << Ta.getArea() << endl;
 }

@@ -1,38 +1,30 @@
 #include <iostream>
 using namespace std;
 
-class Animal 
+class Aniaml
 {
-public: 
-	Animal() { cout <<"Animal 생성자" << endl; }
-	~Animal() { cout <<"Animal 소멸자" << endl; }
-
-	virtual void speak() =0;
-    virtual void eat() = 0;
-    virtual void move() = 0;
+public:
+	void display() { cout << "ParentException" << endl; }
 };
 
-class Dog : public Animal 
+class Lion : public Aniaml
 {
-public: 
-	Dog() { cout <<"Dog 생성자" << endl; }
-	~Dog() { cout <<"Dog 소멸자" << endl; }
-
-	void speak() {
-        cout <<"멍멍" << endl; 
-    }
-    void eat(){
-        cout<<"개사료"<<endl;
-    }
-    void move(){
-        cout<<"강아지 가다"<<endl;
-    }
+public:
+	void display() { cout << "ChildException" << endl; }
 };
 
 int main()
 {
-	Animal *a1 = new Dog();
-	a1->speak();
-
+	try {
+		throw Lion();
+	} 
+    catch (Lion& e) 
+	{
+		e.display();
+	}
+	catch (Aniaml& e) 
+	{
+		e.display();
+	}
 	return 0;
 }
