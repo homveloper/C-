@@ -30,7 +30,7 @@ void main(){
     while(true){
         printMenu();
         int menu = getValue<int>("입력 : ") - 1;
-
+      
         system("cls");
 
         switch (menu)

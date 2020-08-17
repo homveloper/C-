@@ -88,7 +88,7 @@ T Stack<T>::pop()
         std::cerr << e.what() << '\n';
     }
 
-    if (top < size / 2 - 1)
+    if (top <= size / 2 - 1)
         resize(size / 2);
 
     return stack[top--];
@@ -102,6 +102,17 @@ void Stack<T>::resize2(int size)
 template <typename T>
 void Stack<T>::print()
 {
+    try
+    {
+        if (isEmpty())
+            throw exception("스택 비었어요!!");
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+
     for (int i = 0; i < top + 1; i++)
         cout << stack[i] << " ";
 
