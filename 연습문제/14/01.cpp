@@ -1,208 +1,144 @@
+//�������� 1.14�忡 �����ϴ� Shape��� Ŭ������ �߰��� move(), getArea() �Լ��� ��� ���� �Լ��� �����϶�. move()�� ������ ������(x,y)�� �̵��Ѵ�. getArea()�� ������ ������ ���Ѵ�.
+//Rectangle, Ellipse(Ÿ��), Triangle Ŭ������ Shape Ŭ������ ��ӹ޾Ƽ� �ۼ��ȴ�.
+//Shape * ������ �迭�� �����Ҵ��Ͽ� �پ��� ���� ��ü�� ä���. ������ �׸���, ������ ����ϸ�, ������ �̵��Ͽ� ����.
+
 #include <iostream>
-#include <string>
+#include "Point.h"
 #include <cmath>
 using namespace std;
 
-double pi()
-{
-    return std::atan(1) * 4;
-}
-
-class Point
-{
-    int x, y;
-
-public:
-    Point()
-    {
-        Point(0, 0);
-    }
-
-    Point(int x, int y) : x(x), y(y)
-    {
-    }
-
-    void setX(int x)
-    {
-        this->x = x;
-    }
-
-    int getX()
-    {
-        return x;
-    }
-
-    void setY(int y)
-    {
-        this->y = y;
-    }
-
-    int getY()
-    {
-        return y;
-    }
-};
-
-class Shape
-{
+class Shape {
 protected:
-    Point point;
+	Point point;
 
 public:
-    Shape(Point point) : point(point)
-    {
-    }
+	Shape(Point point){
+		this->point = point;
+	}
 
-    void move(int x, int y)
-    {
-        point.setX(x);
-        point.setY(y);
-    }
+	virtual void draw() = 0;
+	virtual double getArea() = 0;
 
-    virtual double getArea() = 0;
-    virtual void draw() = 0;
+	virtual void move(int x = 0, int y = 0) {
+		this->point.setX(x);
+		this->point.setY(y);
+	}
+
+	Point& getPoint(){
+		return point;
+	}
 };
 
-class Rectangle : public Shape
-{
+class Rectangle : public Shape {
 private:
-    int width, height;
+	int width, height;
 
 public:
-    Rectangle(Point point, int width, int height) : Shape(point)
-    {
-        this->width = width;
-        this->height = height;
-    }
+	Rectangle() : Shape(Point(0,0)){
+		width = height = 1;
+	}
 
-    void setWidth(int w)
-    {
-        width = w;
-    }
+	Rectangle(Point point, int width = 1, int height= 1) : Shape(point){
+		this-> width = width;
+		this->height = height;
+	}
 
-    int getWidth()
-    {
-        return width;
-    }
+	void setWidth(int width){
+		this->width = width;
+	}
 
-    void setHeight(int h)
-    {
-        height = h;
-    }
+	int getWidth(){
+		return width;
+	}
 
-    int getHeight()
-    {
-        return height;
-    }
+	void draw(){
+		cout<<"사각형"<<endl;
+		cout<<"x,y : "<<point.getX()<<", "<<point.getY()<<endl;
+	}
 
-    virtual double getArea()
-    {
-        return width * height;
-    }
+	double getArea(){
+		return width * height;
+	}
 
-    virtual void draw()
-    {
-        cout << "Rectangle Draw" << endl;
-        cout << "x, y = " << point.getX() << ", " << point.getY() << endl;
-        cout << "width = " << width << endl;
-        cout << "height = " << height << endl;
-    }
 };
 
-class Ellipse : public Shape
-{
-    int a; //긴 반지름
-    int b; //짧은 반지름
-public:
-    Ellipse() : Shape(Point(0, 0))
-    {
-        a = b = 1;
-    }
-
-    Ellipse(Point point, int a, int b) : Shape(point), a(a), b(b)
-    {
-    }
-
-    void setA(int a)
-    {
-        this->a = a;
-    }
-
-    int getA()
-    {
-        return a;
-    }
-
-    void setB(int b)
-    {
-        this->b = b;
-    }
-
-    int getB()
-    {
-        return b;
-    }
-
-    virtual double getArea()
-    {
-        return a * b * pi();
-    }
-
-    virtual void draw()
-    {
-        cout << "Ellipse Draw" << endl;
-        cout << "x, y = " << point.getX() << ", " << point.getY() << endl;
-        cout << "a = " << a << endl;
-        cout << "b = " << b << endl;
-    }
-};
-
-class Ellipse : public Shape
-{
-    int width;
-    int height;
+class Triangle : public Shape {
+private:
+	int width, height;
 
 public:
-    Ellipse() : Shape(Point(0, 0))
-    {
-        width = 1;
-        height = 1;
-    }
+	Triangle() : Shape(Point(0,0)){
+		width = height = 1;
+	}
 
-    Ellipse(Point point, int width, int height) : Shape(Point(point))
-    {
-        this->width = width;
-        this->height = height;
-    }
+	Triangle(Point point, int width = 1, int height= 1) : Shape(point){
+		this-> width = width;
+		this->height = height;
+	}
 
-    virtual double getArea()
-    {
-        return width * height / 2;
-    }
- 
-    virtual void draw()
-    {
-        cout << "Triangle Draw" << endl;
-        cout << "x, y = " << point.getX() << ", " << point.getY() << endl;
-        cout << "width = " << width << endl;
-        cout << "height = " << height << endl;
-    }
+	void setWidth(int width){
+		this->width = width;
+	}
+
+	int getWidth(){
+		return width;
+	}
+
+	void draw(){
+		cout<<"삼각형"<<endl;
+		cout<<"x,y : "<<point.getX()<<", "<<point.getY()<<endl;
+	}
+
+	double getArea(){
+		return width * height / 2;
+	}
 };
 
-void main()
-{
-    Shape* shapes[3] = {
-        new Ellipse(Point(0,0),5,8),
-        new Rectangle(Point(1,1),2,2),
-        new Ellipse(Point(5,10),2,4)
-    };
+class Ellipse : public Shape {
+private:
+	int a, b;
 
-    for(int i=0; i<3; i++){
-        shapes[i]->draw();
-        shapes[i]->move(i,i*2);
-        shapes[i]->draw();
-        cout<<"넓이 : "<<shapes[i]->getArea()<<endl;
+public:
+	Ellipse() : Shape(Point(0,0)){
+		a = b = 1;
+	}
 
-        cout<<endl;
-    }
-} 
+	Ellipse(Point point, int a = 1, int b= 1) : Shape(point){
+		this-> a = a;
+		this->b = b;
+	}
+
+	void setA(int a){
+		this->a = a;
+	}
+
+	int getA(){
+		return a;
+	}
+
+	void draw(){
+		cout<<"타원"<<endl;
+		cout<<"x,y : "<<point.getX()<<", "<<point.getY()<<endl;
+	}
+
+	double getArea(){
+		return a * b * atan(1) * 4;
+	}
+};
+
+
+void main(){
+	Shape* shapes[3] = {
+		new Rectangle(Point(0,0), 4,4),
+		new Triangle(Point(2,2),5,10),
+		new Ellipse(Point(4,4),5,10)
+	};
+
+	for(int i=0; i<3; i++){
+		shapes[i]->draw();
+		cout<<"넓이 : "<<shapes[i]->getArea()<<endl;
+		Point point = shapes[i]->getPoint();
+		shapes[i]->move(point.getX() + 1, point.getY() + 1);
+	}
+
+}
