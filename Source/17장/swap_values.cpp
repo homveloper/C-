@@ -24,12 +24,12 @@ void swap_values(char* s1, char* s2)
 int main()
 {
 	int x=100, y=200;
-	swap_values(x, y);           	// x, y°¡ ¸ðµÎ int Å¸ÀÔ- OK!
+	swap_values(x, y);           	// x, yï¿½ï¿½ ï¿½ï¿½ï¿½ int Å¸ï¿½ï¿½- OK!
 	cout << x << " " << y << endl;
 
 	char s1[100]="This is a first string";
 	char s2[100]="This is a second string";
-	swap_values(s1, s2);        	// s1, s2°¡ ¸ðµÎ ¹è¿­ - ¿À¹ö·Îµù ÇÔ¼ö È£Ãâ
+	swap_values(s1, s2);        	// s1, s2ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½è¿­ - ï¿½ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½
 	cout << s1<< " " << s2<< endl;
 	return 0;
 }

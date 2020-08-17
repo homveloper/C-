@@ -12,6 +12,19 @@
         "vector": "cpp",
         "iosfwd": "cpp",
         "xiosbase": "cpp",
-        "xlocnum": "cpp"
+        "xlocnum": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "iterator": "cpp",
+        "list": "cpp",
+        "map": "cpp",
+        "memory": "cpp",
+        "new": "cpp",
+        "set": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "unordered_map": "cpp",
+        "xmemory": "cpp",
+        "xutility": "cpp"
     }
 }

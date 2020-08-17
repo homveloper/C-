@@ -3,7 +3,7 @@ using namespace std;
 
 template <typename T>
 class Box {
-    T data; // T´Â Å¸ÀÔ(type)À» ³ªÅ¸³½´Ù.
+    T data; // Tï¿½ï¿½ Å¸ï¿½ï¿½(type)ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½.
 public:
     Box() {      }
     void set(T value) {

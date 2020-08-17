@@ -19,8 +19,8 @@ int main()
 	size_t n1 = count(s, s+strlen(s), 'o');
 	size_t n2 = count_if(vec.begin(),vec.end(), is_even<int>);
 
-	cout << "°ªÀÌ 'o'ÀÎ ¿ä¼ÒÀÇ °³¼ö: " << n1 << endl;
-	cout << "°ªÀÌ Â¦¼öÀÎ ¿ä¼ÒÀÇ °³¼ö: "<< n2 << endl;
+	cout << "ï¿½ï¿½ï¿½ï¿½ 'o'ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: " << n1 << endl;
+	cout << "ï¿½ï¿½ï¿½ï¿½ Â¦ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: "<< n2 << endl;
 
 	return 0;
 }
