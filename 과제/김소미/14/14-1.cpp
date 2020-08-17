@@ -7,6 +7,26 @@
 #include <cmath>
 using namespace std;
 
+class IOHandler{
+
+public:
+	int getInteger(const char *message){
+		int i;
+		cout<<message;
+		cin>>i;
+
+		return i;
+	}
+	double getDouble(const char *message){
+		double d;
+		cout<<message<<endl;
+		cin>>d;
+
+		return d;
+	}
+};
+
+
 class Shape {
 protected:
 	Point point;
@@ -27,6 +47,28 @@ public:
 	Point& getPoint(){
 		return point;
 	}
+
+	// 'r' 'c' 't' 'e'
+	// static Shape& createShape(char c, Point point){
+	// 	Shape *temp;
+	// 	IOHandler ioh;
+
+	// 	if(c =='r'){
+	// 		int height = ioh.getInteger("높이 : ");
+	// 		int width = ioh.getInteger("너비 : ");
+	// 		temp = new Rectangle(point,width,height);
+	// 	}else if(c =='e'){
+	// 		int a = ioh.getInteger("장반경 : ");
+	// 		int b = ioh.getInteger("단반경 : ");
+	// 		temp = new Ellipse(point,a,b);
+	// 	}else if(c =='t'){
+	// 		int height = ioh.getInteger("높이 : ");
+	// 		int width = ioh.getInteger("너비 : ");
+	// 		temp = new Triangle(point,width,height);
+	// 	}
+
+	// 	return *temp;
+	// }
 };
 
 class Rectangle : public Shape {
@@ -128,17 +170,17 @@ public:
 
 
 void main(){
-	Shape* shapes[3] = {
-		new Rectangle(Point(0,0), 4,4),
-		new Triangle(Point(2,2),5,10),
-		new Ellipse(Point(4,4),5,10)
-	};
+	// Shape* shapes[3] = {
+	// 	&Shape::createShape('r',Point(0,0)),
+	// 	&Shape::createShape('c',Point(0,0)),
+	// 	&Shape::createShape('t',Point(0,0))
+	// };
 
-	for(int i=0; i<3; i++){
-		shapes[i]->draw();
-		cout<<"넓이 : "<<shapes[i]->getArea()<<endl;
-		Point point = shapes[i]->getPoint();
-		shapes[i]->move(point.getX() + 1, point.getY() + 1);
-	}
+	// for(int i=0; i<3; i++){
+	// 	shapes[i]->draw();
+	// 	cout<<"넓이 : "<<shapes[i]->getArea()<<endl;
+	// 	Point point = shapes[i]->getPoint();
+	// 	shapes[i]->move(point.getX() + 1, point.getY() + 1);
+	// }
 
 }
