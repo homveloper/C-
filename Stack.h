@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <exception>
 using namespace std;
@@ -31,80 +33,78 @@ public:
     void print();
 };
 
-#include "Stack.h"
-#include <exception>
 
-using namespace std;
-
-template<typename T>
-inline bool Stack<T>::isEmpty()
-{   
+template <typename T>
+bool Stack<T>::isEmpty()
+{
     return top <= -1;
 }
 
 template <typename T>
-bool Stack<T>::isFull(){
+bool Stack<T>::isFull()
+{
     return top >= size - 1;
 }
 
-template<typename T>
+template <typename T>
 void Stack<T>::resize(int newSize)
 {
-    T* temp = new T[newSize];
-    for(int i =0; i<this->size; i++)
+    T *temp = new T[newSize];
+
+    
+    for (int i = 0; i < this->size; i++)
         temp[i] = stack[i];
 
     delete[] stack;
 
     stack = new T[newSize];
 
-    for(int i=0; i<this->size; i++)
+    for (int i = 0; i < this->size; i++)
         stack[i] = temp[i];
 
     delete[] temp;
     this->size = newSize;
 }
 
-template<typename T>
-inline void Stack<T>::push(T value)
+template <typename T>
+void Stack<T>::push(T value)
 {
-    if(isFull())
+    if (isFull())
         resize(size * 2);
 
     stack[++top] = value;
 }
 
-template<typename T>
+template <typename T>
 T Stack<T>::pop()
 {
     try
     {
-        if(isEmpty())
+        if (isEmpty())
             throw exception("스택 비었어요!!");
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         std::cerr << e.what() << '\n';
     }
 
-    if(top < size / 2 - 1)
-        reisze(size / 2);
-    
+    if (top < size / 2 - 1)
+        resize(size / 2);
+
     return stack[top--];
 }
 
-
-
-template<typename T>
-inline void Stack<T>::resize2(int size)
+template <typename T>
+void Stack<T>::resize2(int size)
 {
-
 }
 
 template <typename T>
-void print(){
-    for(int i=0; i<top+1; i++)
-        cout<<stack[i]<<" ";
-    
-    cout<<endl;
+void Stack<T>::print()
+{
+    for (int i = 0; i < top + 1; i++)
+        cout << stack[i] << " ";
+
+    cout << endl;
 }
+

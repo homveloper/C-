@@ -1,4 +1,4 @@
-#include "Stack.h"
+#include "stack.h"
 #include <iostream>
 using namespace std;
 
@@ -7,7 +7,6 @@ using namespace std;
 enum MENU {PUSH, POP, PRINT};
 
 void printMenu(){
-    system("cls");
     cout<<"=========="<<endl;
     cout<<"1. push"<<endl;
     cout<<"2. pop"<<endl;
@@ -31,6 +30,8 @@ void main(){
     while(true){
         printMenu();
         int menu = getValue<int>("입력 : ") - 1;
+
+        system("cls");
 
         switch (menu)
         {
