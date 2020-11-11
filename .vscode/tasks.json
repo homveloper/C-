@@ -18,19 +18,20 @@
 			"problemMatcher": [
 				"$msCompile"
 			],
-			"group": {
-				"kind": "build",
-				"isDefault": true,
-			},
+			"group": "build"
 		},
 		{
 			"label": "excute",
-			"command" : "cmd",
-			"group": "test",
+			"command": "cmd",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
 			"args": [
 				"/C",
 				"${fileDirname}\\${fileBasenameNoExtension}.exe"
-			]
+			],
+			"problemMatcher": []
 		}
 	]
 }
