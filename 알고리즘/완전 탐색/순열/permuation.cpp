@@ -63,7 +63,6 @@ int main() {
     for(int i=0; i<anwser; i++){
         std::cout<<primeNumber[i]<<std::endl;
     }
-
     std::cout<<anwser<<std::endl;
 
     return 0;
