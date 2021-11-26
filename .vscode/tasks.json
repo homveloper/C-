@@ -1,29 +1,22 @@
 {
 	"tasks": [
-		// c++ 컴파일
 		{
-			"type": "cppbuild",
-			"label": "C/C++: gcc-10 활성 파일 빌드",
-			"command": "/opt/homebrew/bin/g++-10",
+			"type": "shell",
+			"label": "cl.exe build active file",
+			"command": "cl.exe",
 			"args": [
-				// "-g",	// dSYM debug file build
-				"${file}",
-				"-o",
-				"${fileDirname}/${fileBasenameNoExtension}"
+			  "/Zi",
+			  "/EHsc",
+			  "/Fe:",
+			  "${fileDirname}\\${fileBasenameNoExtension}.exe",
+			  "${file}"
 			],
-			"options": {
-				"cwd": "${fileDirname}"
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
+			"problemMatcher": ["$msCompile"],
 			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"detail": "컴파일러: /opt/homebrew/bin/gcc-10"
-		},
-        // 바이너리 실행(Ubuntu)
+			  "kind": "build",
+			  "isDefault": true
+			}
+		  },
         {
             "type": "shell",
             "label": "execute",
@@ -32,6 +25,6 @@
             "presentation": {
                 "clear": true
             }
-        }
+		}
 	]
 }
